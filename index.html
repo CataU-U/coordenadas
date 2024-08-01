@@ -1,0 +1,77 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Coordenadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: darkgreen; /* Fondo verde oscuro */
+            color: white; /* Texto blanco */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: green; /* Cambia a verde claro al pasar el mouse */
+        }
+        label {
+            margin-bottom: 30px; /* Espacio de 15 píxeles entre etiquetas */
+
+        }
+        input {
+            margin-bottom: 20px; /* Espacio de 20 píxeles entre inputs */
+
+            margin-left: auto; /* Centrar el input */
+            margin-right: auto; /* Centrar el input */
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Coordenadas</h1>
+    
+    <h2>Coordenadas Polares a Rectangulares</h2>
+    <label for="r">Radio (r):</label>
+    <input type="number" id="r" placeholder="Ejemplo: 5"><br>
+    <label for="theta">Ángulo (θ en grados):</label>
+    <input type="number" id="theta" placeholder="Ejemplo: 30"><br>
+    <button onclick="convertirAPolares()">Convertir a Rectangulares</button>
+    
+    <h3>Resultado:</h3>
+    <p id="resultadoPolares"></p>
+
+    <h2>Coordenadas Rectangulares a Polares</h2>
+    <label for="x">X:</label>
+    <input type="number" id="x" placeholder="Ejemplo: 3"><br>
+    <label for="y">Y:</label>
+    <input type="number" id="y" placeholder="Ejemplo: 4"><br>
+    <button onclick="convertirARectangulares()">Convertir a Polares</button>
+    
+    <h3>Resultado:</h3>
+    <p id="resultadoRectangulares"></p>
+
+    <script>
+        function convertirAPolares() {
+            const r = parseFloat(document.getElementById('r').value);
+            const theta = parseFloat(document.getElementById('theta').value) * (Math.PI / 180); // Convertir a radianes
+            const x = r * Math.cos(theta);
+            const y = r * Math.sin(theta);
+            document.getElementById('resultadoPolares').innerText = `X: ${x.toFixed(2)}, Y: ${y.toFixed(2)}`;
+        }
+
+        function convertirARectangulares() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            const r = Math.sqrt(x * x + y * y);
+            const theta = Math.atan2(y, x) * (180 / Math.PI); // Convertir a grados
+            document.getElementById('resultadoRectangulares').innerText = `R: ${r.toFixed(2)}, θ: ${theta.toFixed(2)} grados`;
+        }
+    </script>
+</body>
+</html>
